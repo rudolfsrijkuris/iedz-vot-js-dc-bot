@@ -32,14 +32,14 @@ client.on('ready', () => {
 
 client.on('message', async (message) => {
     if (message.content.startsWith(prefix + 'say')) {
-        if (message.member.permissions.has(Permissions.FLAGS.ADMINISTRATOR)) {
+        //if (message.member.permissions.has(Permissions.FLAGS.ADMINISTRATOR)) {
             if (message.author.bot) return;
             message.delete();
             const SayMessage = message.content.slice(4).trim();
-            message.channel.send(SayMessage)
-        } else {
-            console.log("Kādam piss garām!")
-        }
+            message.channel.send(SayMessage);
+        //} else {
+           // console.log("Kādam piss garām!")
+        //}
     } else {
         return;
     }
