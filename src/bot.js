@@ -132,15 +132,15 @@ client.on('message', async (message) => {
             const args = message.content.split(' ').slice(1);
             const amount = args.join();
 
-            if (!amount) return message.reply("Tu neesi norādījis dzēšamo ziņu skaitu.");
-            if (isNaN(amount)) return message.reply("Daudzuma parametrs nav skaitlis.");
+            if (!amount) return console.log("Tu neesi norādījis dzēšamo ziņu skaitu.");
+            if (isNaN(amount)) return console.log("Daudzuma parametrs nav skaitlis.");
 
-            if (amount > 100) return message.reply("Tu nevari izdzēst vairāk par 100 ziņām!");
-            if (amount < 1) return message.reply("Tev ir jānorāda minimālā vērtība 1!");
+            if (amount > 100) return console.log("Tu nevari izdzēst vairāk par 100 ziņām!");
+            if (amount < 1) return console.log("Tev ir jānorāda minimālā vērtība 1!");
 
             await message.channel.messages.fetch({ limit: amount }).then(messages => {
                 message.channel.bulkDelete(messages)
-                message.reply(amount + "ziņas izdzēstas.")
+                console.log(amount + "ziņas izdzēstas.")
             });
         }
     }
