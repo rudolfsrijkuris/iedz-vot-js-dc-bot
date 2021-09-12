@@ -7,7 +7,6 @@ const { Client, Intents, Permissions, Discord, MessageEmbed, voiceStateUpdate } 
 const client = new Client({ partials: ["MESSAGE", "USER", "REACTION"], intents: [Intents.FLAGS.GUILDS, Intents.FLAGS.GUILD_MESSAGES, Intents.FLAGS.GUILD_MESSAGE_REACTIONS] });
 
 const prefix = process.env.PREFIX;
-const config = require("../config.js");
 
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
