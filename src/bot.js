@@ -1,5 +1,6 @@
 require("dotenv").config();
-
+const express = require("express");
+const app = express();
 
 const { Client, Intents, Permissions, Discord, MessageEmbed } = require('discord.js');
 const client = new Client({ partials: ["MESSAGE", "USER", "REACTION"], intents: [Intents.FLAGS.GUILDS, Intents.FLAGS.GUILD_MESSAGES, Intents.FLAGS.GUILD_MESSAGE_REACTIONS] });
