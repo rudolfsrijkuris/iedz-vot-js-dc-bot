@@ -141,7 +141,7 @@ client.on('message', async (message) => {
 
             await message.channel.messages.fetch({ limit: amount }).then(messages => {
                 message.channel.bulkDelete(messages)
-                console.log(amount + "ziņas izdzēstas.")
+                console.log(amount + " ziņas izdzēstas.")
             });
         }
     }
