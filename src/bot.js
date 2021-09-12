@@ -44,48 +44,21 @@ client.on('ready', () => {
 
 ///  JAUNS VOICE KANĀLS  ///
 
-client.on('voiceStateUpdate', (oldUser, newUser) => {
-    const oldChannel = oldUser.voiceChannel
-    const newChannel = newUser.voiceChannel
-  
-    if (newChannel) {
-      const { channel, category, userLimit } = autoChannel
-  
-      if (newChannel.id === channel) {
-        const guild = newChannel.guild
-        const { discriminator } = newUser.user
-        const lietotajs = guild.roles.get("885871597636976670")
-  
-        guild.createChannel(`✨Room #${discriminator}`, {
-          type: 'voice',
-          parent: category,
-          userLimit: userLimit,
-  
-          permissionOverwrites: [{
-            id: newUser.id,
-            allow: ['MANAGE_CHANNELS']
-          }]
-        })
-          .then(channel => {
-            newUser.setVoiceChannel(channel)
-            channel.overwritePermissions(lietotajs,{
-               VIEW_CHANNEL: false,
-               CONNECT: false
+client.on('messageCreate', async (message) => {
+    if (message.content.startsWith(prefix + "voice")) {
+        if (message.author.bot) return;
+        
+        const args = message.content.split(' ').slice(1);
+        const name = args.join();
+
+        message.guild.channels
+            .create(name, {
+                type: 'voice',
             })
-              .catch(() => channel.delete())
-          })
-      }
-    }
-  
-    if (oldChannel) {
-      const { id: channelID, parentID } = oldChannel
-      const { channel, category } = autoChannel
-  
-      if (parentID === category && channelID !== channel) {
-        if (oldChannel.members.size === 0) {
-          if (oldChannel.deletable) oldChannel.delete()
-        }
-      }
+            .then((channel) => {
+                const categoryID = process.env.CATEGORY_ID;
+                channel.setParent(categoryID)
+            })
     }
 
 });
