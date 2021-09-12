@@ -3,7 +3,7 @@ const http = require("http");
 const express = require("express");
 const app = express();
 
-const { Client, Intents, Permissions, Discord, MessageEmbed } = require('discord.js');
+const { Client, Intents, Permissions, Discord, MessageEmbed, voiceStateUpdate } = require('discord.js'),autoChannel=require('../config.js').autoChannel;
 const client = new Client({ partials: ["MESSAGE", "USER", "REACTION"], intents: [Intents.FLAGS.GUILDS, Intents.FLAGS.GUILD_MESSAGES, Intents.FLAGS.GUILD_MESSAGE_REACTIONS] });
 
 const prefix = process.env.PREFIX;
@@ -40,22 +40,6 @@ function startKeepAlive() {
 client.on('ready', () => {
     console.log(`${client.user.tag} has logged in.`);
     client.user.setActivity("ciema iedzīvotājus", { type: "WATCHING", name: "Iedzīvotājs" });
-});
-
-
-client.on('messageCreate', async (message) => {
-    if (message.content.startsWith(prefix + 'say')) {
-        if (message.member.permissions.has(Permissions.FLAGS.ADMINISTRATOR)) {
-            if (message.author.bot) return;
-            message.delete();
-            const SayMessage = message.content.slice(4).trim();
-            message.channel.send(SayMessage);
-        } else {
-            console.log("Kādam piss garām!")
-        }
-    } else {
-        return;
-    }
 });
 
 ///  JAUNS VOICE KANĀLS  ///
@@ -106,7 +90,20 @@ client.on('voiceStateUpdate', (oldUser, newUser) => {
 
 });
 
-
+client.on('messageCreate', async (message) => {
+    if (message.content.startsWith(prefix + 'say')) {
+        if (message.member.permissions.has(Permissions.FLAGS.ADMINISTRATOR)) {
+            if (message.author.bot) return;
+            message.delete();
+            const SayMessage = message.content.slice(4).trim();
+            message.channel.send(SayMessage);
+        } else {
+            console.log("Kādam piss garām!")
+        }
+    } else {
+        return;
+    }
+});
 
 ///  KOMANDAS  ///
 
