@@ -12,7 +12,7 @@ app.listen(PORT, () => {
     console.log(`Our app is running on port ${ PORT }`);
 });
 
-app.setMaxListeners(10);
+app.setMaxListeners(11);
 
 client.on('ready', () => {
     console.log(`${client.user.tag} has logged in.`);
