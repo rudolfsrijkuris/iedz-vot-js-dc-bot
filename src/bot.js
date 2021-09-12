@@ -76,7 +76,6 @@ client.on('message', async (message) => {
 
     if (message.content.startsWith(prefix + "help")) {
         if (message.author.bot) return;
-        message.delete();
         message.channel.send({ embeds: [ new MessageEmbed() 
             .setTitle("Komandas")
             .setColor("#009602")
