@@ -94,6 +94,22 @@ client.on('message', async (message) => {
         ]})
     }
 
+    if (message.content.startsWith(prefix + "adminhelp")) {
+        if (message.author.bot) return;
+        //message.delete();
+        if (message.member.permissions.has(Permissions.FLAGS.ADMINISTRATOR)) {
+            message.channel.send({ embeds: [ new MessageEmbed() 
+            .setTitle("**Admin Komandas**")
+            .setColor("#009602")
+            .addField("**Komandu prefix:**", "?")
+            .addField("**Clear komanda, lai izdzēstu līdz pēdējām 100 ziņām:**", "?clear skaitlis")
+            .addField("**Veikt kādu svarīgu paziņojumu, ziņu nosūtot caur botu:**", "?say teksts")
+            .setFooter("~Iedzīvotājs")
+            .setTimestamp()
+            ]})
+        }
+    }
+
 
     if (message.content.startsWith(prefix + "ieteikt")) {
         if (message.author.bot) return;
