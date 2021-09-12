@@ -2,7 +2,6 @@ require("dotenv").config();
 const http = require("http");
 const express = require("express");
 const app = express();
-const WOKCommands = require("wokcommands");
 
 const { Client, Intents, Permissions, Discord, MessageEmbed, voiceStateUpdate } = require('discord.js'),autoChannel=require('../config.js').autoChannel;
 const client = new Client({ partials: ["MESSAGE", "USER", "REACTION"], intents: [Intents.FLAGS.GUILDS, Intents.FLAGS.GUILD_MESSAGES, Intents.FLAGS.GUILD_MESSAGE_REACTIONS] });
@@ -17,7 +16,7 @@ app.listen(PORT, () => {
 
 //app.setMaxListeners(11);
 
-function startKeepAlive() {
+/* function startKeepAlive() {
     setInterval(function() {
         const options = {
             host: '0.0.0.0',
@@ -36,17 +35,11 @@ function startKeepAlive() {
             console.log("Error: " + err.message);
         });
     }, 20 * 60 * 1000);
-}
+} */
 
 client.on('ready', () => {
     console.log(`${client.user.tag} has logged in.`);
     client.user.setActivity("ciema iedzīvotājus", { type: "WATCHING", name: "Iedzīvotājs" });
-
-    new WOKCommands(client, {
-        commandsDir: 'commands',
-        featureDir: 'features',
-        showWarns: false
-    }).setMongoPath(process.env.MONGO_URI)
 });
 
 ///  JAUNS VOICE KANĀLS  ///
