@@ -102,6 +102,7 @@ client.on('message', async (message) => {
             .setTitle("**Admin Komandas**")
             .setColor("#009602")
             .addField("**Komandu prefix:**", "?")
+            .addField("**Admin help komanda:**", "?adminhelp")
             .addField("**Clear komanda, lai izdzēstu līdz pēdējām 100 ziņām:**", "?clear skaitlis")
             .addField("**Veikt kādu svarīgu paziņojumu, ziņu nosūtot caur botu:**", "?say teksts")
             .setFooter("~Iedzīvotājs")
