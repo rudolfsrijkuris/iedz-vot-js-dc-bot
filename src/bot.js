@@ -52,7 +52,7 @@ client.on('messageCreate', async (message) => {
         const name = args.join();
 
         message.guild.channels.create(name, {
-            type: 'text',
+            type: 'GUILD_VOICE',
             //permissionOverwrites: [
             //    {
             //        id: message.guild.roles.everyone, //To make it be seen by a certain role, user an ID instead
