@@ -7,10 +7,10 @@ module.exports = client => {
         client.emojis.cache.find((emoji) => emoji.name === emojiName)
 
     const emojis = {
-        regional_indicator_c: 'CSGO',
-        regional_indicator_m: 'MINECRAFT',
-        regional_indicator_t: 'TERRARIA',
-        regional_indicator_i: 'INTERNETA GEIMI'
+        csgo: 'CSGO',
+        mc: 'MINECRAFT',
+        terraria: 'TERRARIA',
+        internet: 'INTERNETA GEIMI'
     }
 
     const reactions = []
