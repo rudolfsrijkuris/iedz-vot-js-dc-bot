@@ -47,7 +47,7 @@ client.on('message', async (message) => {
         message.delete();
         const channelidkarte = process.env.CHANNEL_IDKARTE;
         message.channel.send({ embeds: [ new MessageEmbed()
-            .setTitle("Balsošana")
+            .setTitle("**Balsošana**")
             .setDescription(/*"Vai pievienot visas trīs 10. klases un pārveidot šo par RTV 10. klašu discordu?"*/ "Jautājums? Jā-✔️ Nē-❌")
             .setFooter("~Iedzīvotājs")
             .setColor("#ff0000") 
@@ -64,11 +64,11 @@ client.on('message', async (message) => {
         const botcon = client.user.displayAvatarURL();
         message.channel.send({ embeds: [ new MessageEmbed()
             .setThumbnail(botcon)
-            .setTitle("RTV 10.B klases ciems")
+            .setTitle("**RTV 10.B klases ciems**")
             .setColor("#009602")
             .setDescription("Šis ir 10.B klases discord ciemats, kurā ir laipni gaidīti visi, tās iedzīvotāji.")
-            .addField("Izveidošanas datums:", "11/09/2021 2:29 PM")
-            .addField("Ciema iedzīvotāju skaits:", "24")
+            .addField("**Izveidošanas datums:**", "11/09/2021 2:29 PM")
+            .addField("**Ciema iedzīvotāju skaits:**", "24")
             .setTimestamp()
             .setFooter("~Iedzīvotājs") ] 
         })
@@ -78,11 +78,11 @@ client.on('message', async (message) => {
         if (message.author.bot) return;
         //message.delete();
         message.channel.send({ embeds: [ new MessageEmbed() 
-            .setTitle("Komandas")
+            .setTitle("**Komandas**")
             .setColor("#009602")
-            .addField("Komandu prefix:", "?")
-            .addField("Informācija par šo discord serveri:", "?info")
-            .addField("Ieteikt/piedāvāt kādu ideju vai jebko citu kopīgam balsojumam:", "?ieteikt teksts")
+            .addField("**Komandu prefix:**", "?")
+            .addField("**Informācija par šo discord serveri:**", "?info")
+            .addField("**Ieteikt/piedāvāt kādu ideju vai jebko citu kopīgam balsojumam:**", "?ieteikt teksts")
             .setFooter("~Iedzīvotājs")
             .setTimestamp()
         ]})
