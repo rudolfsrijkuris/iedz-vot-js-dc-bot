@@ -19,7 +19,7 @@ app.listen(PORT, () => {
 function startKeepAlive() {
     setInterval(function() {
         const options = {
-            host: '54.220.192.176',
+            host: '0.0.0.0',
             port: process.env.PORT,
             path: '/'
         };
