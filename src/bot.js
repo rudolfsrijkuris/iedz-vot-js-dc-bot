@@ -7,6 +7,7 @@ const { Client, Intents, Permissions, Discord, MessageEmbed } = require('discord
 const client = new Client({ partials: ["MESSAGE", "USER", "REACTION"], intents: [Intents.FLAGS.GUILDS, Intents.FLAGS.GUILD_MESSAGES, Intents.FLAGS.GUILD_MESSAGE_REACTIONS] });
 
 const prefix = process.env.PREFIX;
+const config = require("../config.js");
 
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
@@ -18,7 +19,7 @@ app.listen(PORT, () => {
 function startKeepAlive() {
     setInterval(function() {
         const options = {
-            host: 'iedzivotajs-dc-bot.herokuapp.com',
+            host: '54.220.192.176',
             port: process.env.PORT,
             path: '/'
         };
@@ -56,6 +57,58 @@ client.on('messageCreate', async (message) => {
         return;
     }
 });
+
+///  JAUNS VOICE KANĀLS  ///
+
+client.on('voiceStateUpdate', (oldUser, newUser) => {
+    const oldChannel = oldUser.voiceChannel
+    const newChannel = newUser.voiceChannel
+  
+    if (newChannel) {
+      const { channel, category, userLimit } = autoChannel
+  
+      if (newChannel.id === channel) {
+        const guild = newChannel.guild
+        const { discriminator } = newUser.user
+        const lietotajs = guild.roles.get("885871597636976670")
+  
+        guild.createChannel(`✨Room #${discriminator}`, {
+          type: 'voice',
+          parent: category,
+          userLimit: userLimit,
+  
+          permissionOverwrites: [{
+            id: newUser.id,
+            allow: ['MANAGE_CHANNELS']
+          }]
+        })
+          .then(channel => {
+            newUser.setVoiceChannel(channel)
+            channel.overwritePermissions(lietotajs,{
+               VIEW_CHANNEL: false,
+               CONNECT: false
+            })
+              .catch(() => channel.delete())
+          })
+      }
+    }
+  
+    if (oldChannel) {
+      const { id: channelID, parentID } = oldChannel
+      const { channel, category } = autoChannel
+  
+      if (parentID === category && channelID !== channel) {
+        if (oldChannel.members.size === 0) {
+          if (oldChannel.deletable) oldChannel.delete()
+        }
+      }
+    }
+
+});
+
+
+
+///  KOMANDAS  ///
 
 client.on('messageCreate', async (message) => {
     if (message.content.startsWith(prefix + 'embed')) {
