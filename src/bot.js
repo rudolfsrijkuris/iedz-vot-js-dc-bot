@@ -32,25 +32,26 @@ client.on('message', async (message) => {
         if (message.author.bot) return;
         message.delete();
         const kanalaid = process.env.KANALA_ID;
-        const embedi = new MessageEmbed()
-            .setTitle("mājas darbi")
+        
+        message.channel.send({ embeds: [new MessageEmbed()
+            .setTitle("mājasdarbi")
             .setDescription("Šeit sūtam mājas darbus, lai varētu špikot viens no otra :smile:")
             .setFooter("~Iedzīvotājs")
-            .setColor("#009602");
-        
-        message.channel.send({ embeds: [new MessageEmbed().setTitle("mājasdarbi").setDescription("Šeit sūtam mājas darbus, lai varētu špikot viens no otra :smile:").setFooter("~Iedzīvotājs").setColor("#009602")] })
+            .setColor("#009602")
+            .setTimestamp()
+        ]})
     }
 
     if (message.content.startsWith(prefix + "balsot")) {
         if (message.author.bot) return;
         message.delete();
         const channelidkarte = process.env.CHANNEL_IDKARTE;
-        const embed = new MessageEmbed()
+        message.channel.send({ embeds: [ new MessageEmbed()
             .setTitle("Balsošana")
-            .setDescription("Vai pievienot visas trīs 10. klases un pārveidot šo par RTV 10. klašu discordu? Jā-:white_check_mark: Nē-:x:")
+            .setDescription(/*"Vai pievienot visas trīs 10. klases un pārveidot šo par RTV 10. klašu discordu?"*/ "Jautājums? Jā-✔️ Nē-❌")
             .setFooter("~Iedzīvotājs")
-            .setColor("#009602");
-        message.channel.send({ embeds: [ new MessageEmbed().setTitle("Balsošana").setDescription(/*"Vai pievienot visas trīs 10. klases un pārveidot šo par RTV 10. klašu discordu?"*/ "Jautājums? Jā-✔️ Nē-❌").setFooter("~Iedzīvotājs").setColor("#ff0000") ] }).then(embedMessage => {
+            .setColor("#ff0000") 
+        ]}).then(embedMessage => {
             embedMessage.react("✔️"),
             embedMessage.react("❌")
         });
@@ -82,6 +83,8 @@ client.on('message', async (message) => {
             .addField("Komandu prefix:", "?")
             .addField("Informācija par šo discord serveri:", "?info")
             .addField("Ieteikt/piedāvāt kādu ideju vai jebko citu kopīgam balsojumam:", "?ieteikt teksts")
+            .setFooter("~Iedzīvotājs")
+            .setTimestamp()
         ]})
     }
 
@@ -94,6 +97,7 @@ client.on('message', async (message) => {
             .setTitle(`Ieteikums no **${message.author.tag}**: `)
             .setDescription(`"${words}"`)
             .setFooter("~Iedzīvotājs")
+            .setTimestamp()
         ]}).then(embedMessage => {
             embedMessage.react("✔️"),
             embedMessage.react("❌")
