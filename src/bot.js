@@ -110,6 +110,25 @@ client.on('message', async (message) => {
         });
     }
 
+    if (message.content.startsWith(prefix + "clear")) {
+        if (message.author.bot) return;
+        if (message.member.permissions.has(Permissions.FLAGS.MANAGE_MESSAGES)) {
+            const args = message.content.split(' ').slice(1);
+            const amount = args.join();
+
+            if (!amount) return message.reply("Tu neesi norādījis dzēšamo ziņu skaitu.");
+            if (isNaN(amount)) return message.reply("Daudzuma parametrs nav skaitlis.");
+
+            if (amount > 100) return message.reply("Tu nevari izdzēst vairāk par 100 ziņām!");
+            if (amount < 1) return message.reply("Tev ir jānorāda minimālā vērtība 1!");
+
+            await message.channel.messages.fetch({ limit: amount }).then(messages => {
+                message.channel.bulkDelete(messages)
+                message.reply(amount + "ziņas izdzēstas.")
+            });
+        }
+    }
+
 
     process.on('unhandledRejection', error => {
         console.error('Unhandled promise rejection:', error);
