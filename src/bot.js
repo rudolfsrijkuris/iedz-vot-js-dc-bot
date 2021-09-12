@@ -51,10 +51,15 @@ client.on('messageCreate', async (message) => {
         const args = message.content.split(' ').slice(1);
         const name = args.join();
 
-        message.guild.channels
-            .create(name, {
-                type: 'voice',
-            })
+        message.guild.channels.create(name, {
+            type: 'voice',
+            permissionOverwrites: [
+                {
+                    id: message.guild.roles.everyone, //To make it be seen by a certain role, user an ID instead
+                    allow: ['VIEW_CHANNEL', 'SEND_MESSAGES', 'READ_MESSAGE_HISTORY']
+                }
+            ],
+        })
             .then((channel) => {
                 const categoryID = process.env.CATEGORY_ID;
                 channel.setParent(categoryID)
