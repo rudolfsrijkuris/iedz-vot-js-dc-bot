@@ -1,4 +1,5 @@
 require("dotenv").config();
+const http = require("http");
 const express = require("express");
 const app = express();
 
@@ -13,6 +14,27 @@ app.listen(PORT, () => {
 });
 
 //app.setMaxListeners(11);
+
+function startKeepAlive() {
+    setInterval(function() {
+        const options = {
+            host: 'iedzivotajs-dc-bot.herokuapp.com',
+            port: process.env.PORT,
+            path: '/'
+        };
+        http.get(options, function(res) {
+            res.on('data', function(chunk) {
+                try {
+                    console.log("HEROKU RESPONSE: " + chunk);
+                } catch (err) {
+                    console.log(err.message);
+                }
+            });
+        }).on('error', function(err) {
+            console.log("Error: " + err.message);
+        });
+    }, 20 * 60 * 1000);
+}
 
 client.on('ready', () => {
     console.log(`${client.user.tag} has logged in.`);
@@ -160,4 +182,5 @@ client.on('messageCreate', async (message) => {
     }
 });
 
+startKeepAlive();
 client.login(process.env.DISCORDJS_BOT_TOKEN);
