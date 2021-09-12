@@ -37,9 +37,13 @@ app.listen(PORT, () => {
     }, 20 * 60 * 1000);
 } */
 
+const roleClaim = require('./role-claim');
+
 client.on('ready', () => {
     console.log(`${client.user.tag} has logged in.`);
     client.user.setActivity("ciema iedzīvotājus", { type: "WATCHING", name: "Iedzīvotājs" });
+
+    roleClaim(client);
 });
 
 ///  JAUNS VOICE KANĀLS  ///
@@ -212,5 +216,5 @@ client.on('messageCreate', async (message) => {
     }
 });
 
-startKeepAlive();
+//startKeepAlive();
 client.login(process.env.DISCORDJS_BOT_TOKEN);
