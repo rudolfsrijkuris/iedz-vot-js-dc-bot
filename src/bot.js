@@ -1,5 +1,6 @@
 require("dotenv").config();
 
+
 const { Client, Intents, Permissions, Discord, MessageEmbed } = require('discord.js');
 const client = new Client({ partials: ["MESSAGE", "USER", "REACTION"], intents: [Intents.FLAGS.GUILDS, Intents.FLAGS.GUILD_MESSAGES, Intents.FLAGS.GUILD_MESSAGE_REACTIONS] });
 
@@ -7,19 +8,20 @@ const prefix = process.env.PREFIX;
 
 client.on('ready', () => {
     console.log(`${client.user.tag} has logged in.`);
+    client.user.setActivity("ciema iedzīvotājus", { type: "WATCHING", name: "Iedzīvotājs" });
 });
 
 
 client.on('message', async (message) => {
     if (message.content.startsWith(prefix + 'say')) {
-        //if (message.member.permissions.has(Permissions.FLAGS.ADMINISTRATOR)) {
+        if (message.member.permissions.has(Permissions.FLAGS.ADMINISTRATOR)) {
             if (message.author.bot) return;
             message.delete();
             const SayMessage = message.content.slice(4).trim();
             message.channel.send(SayMessage);
-        //} else {
-           // console.log("Kādam piss garām!")
-        //}
+        } else {
+            console.log("Kādam piss garām!")
+        }
     } else {
         return;
     }
@@ -39,16 +41,16 @@ client.on('message', async (message) => {
         message.channel.send({ embeds: [new MessageEmbed().setTitle("mājasdarbi").setDescription("Šeit sūtam mājas darbus, lai varētu špikot viens no otra :smile:").setFooter("~Iedzīvotājs").setColor("#009602")] })
     }
 
-    if (message.content.startsWith(prefix + "poll")) {
+    if (message.content.startsWith(prefix + "balsot")) {
         if (message.author.bot) return;
         message.delete();
         const channelidkarte = process.env.CHANNEL_IDKARTE;
         const embed = new MessageEmbed()
             .setTitle("Balsošana")
-            .setDescription("Vai Jums patīk mans vārds - Iedzīvotājs? Jā-:white_check_mark: Nē-:x:")
+            .setDescription("Vai pievienot visas trīs 10. klases un pārveidot šo par RTV 10. klašu discordu? Jā-:white_check_mark: Nē-:x:")
             .setFooter("~Iedzīvotājs")
-            .setColor("#ff0000");
-        message.channel.send({ embeds: [ new MessageEmbed().setTitle("Balsošana").setDescription("Vai Jums patīk mans vārds - Iedzīvotājs? Jā-✔️ Nē-❌").setFooter("~Iedzīvotājs").setColor("#ff0000") ] }).then(embedMessage => {
+            .setColor("#009602");
+        message.channel.send({ embeds: [ new MessageEmbed().setTitle("Balsošana").setDescription(/*"Vai pievienot visas trīs 10. klases un pārveidot šo par RTV 10. klašu discordu?"*/ "Jautājums? Jā-✔️ Nē-❌").setFooter("~Iedzīvotājs").setColor("#ff0000") ] }).then(embedMessage => {
             embedMessage.react("✔️"),
             embedMessage.react("❌")
         });
@@ -71,9 +73,38 @@ client.on('message', async (message) => {
         })
     }
 
+    if (message.content.startsWith(prefix + "help")) {
+        if (message.author.bot) return;
+        message.delete();
+        message.channel.send({ embeds: [ new MessageEmbed() 
+            .setTitle("Komandas")
+            .setColor("#009602")
+            .addField("Komandu prefix:", "?")
+            .addField("Informācija par šo discord serveri:", "?info")
+            .addField("Ieteikt/piedāvāt kādu ideju vai jebko citu kopīgam balsojumam:", "?ieteikt teksts")
+        ]})
+    }
+
+
+    if (message.content.startsWith(prefix + "ieteikt")) {
+        if (message.author.bot) return;
+        const words = message.content.split(" ").splice(1).join(" ")
+        message.channel.send({ embeds: [ new MessageEmbed() 
+            .setColor("#009602")
+            .setTitle(`Ieteikums no **${message.author.tag}**: `)
+            .setDescription(`"${words}"`)
+            .setFooter("~Iedzīvotājs")
+        ]}).then(embedMessage => {
+            embedMessage.react("✔️"),
+            embedMessage.react("❌")
+        });
+    }
+
+
     process.on('unhandledRejection', error => {
         console.error('Unhandled promise rejection:', error);
     });
+
 
 });
 
