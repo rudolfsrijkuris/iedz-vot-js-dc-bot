@@ -12,7 +12,7 @@ app.listen(PORT, () => {
     console.log(`Our app is running on port ${ PORT }`);
 });
 
-app.setMaxListeners(11);
+//app.setMaxListeners(11);
 
 client.on('ready', () => {
     console.log(`${client.user.tag} has logged in.`);
@@ -49,7 +49,9 @@ client.on('message', async (message) => {
             .setTimestamp()
         ]})
     }
+});
 
+client.on('message', async (message) => {
     if (message.content.startsWith(prefix + "balsot")) {
         if (message.author.bot) return;
         message.delete();
@@ -64,7 +66,9 @@ client.on('message', async (message) => {
             embedMessage.react("❌")
         });
     }
+});
 
+client.on('message', async (message) => {
     if (message.content.startsWith(prefix + "info")) {
         if (message.author.bot) return;
         message.delete();
@@ -81,7 +85,9 @@ client.on('message', async (message) => {
             .setFooter("~Iedzīvotājs") ] 
         })
     }
+});
 
+client.on('message', async (message) => {
     if (message.content.startsWith(prefix + "help")) {
         if (message.author.bot) return;
         //message.delete();
@@ -95,7 +101,9 @@ client.on('message', async (message) => {
             .setTimestamp()
         ]})
     }
+});
 
+client.on('message', async (message) => {
     if (message.content.startsWith(prefix + "adminhelp")) {
         if (message.author.bot) return;
         //message.delete();
@@ -112,8 +120,9 @@ client.on('message', async (message) => {
             ]})
         }
     }
+});
 
-
+client.on('message', async (message) => {
     if (message.content.startsWith(prefix + "ieteikt")) {
         if (message.author.bot) return;
         const words = message.content.split(" ").splice(1).join(" ")
@@ -128,7 +137,9 @@ client.on('message', async (message) => {
             embedMessage.react("❌")
         });
     }
+});
 
+client.on('message', async (message) => {
     if (message.content.startsWith(prefix + "clear")) {
         if (message.author.bot) return;
         if (message.member.permissions.has(Permissions.FLAGS.MANAGE_MESSAGES)) {
@@ -147,13 +158,6 @@ client.on('message', async (message) => {
             });
         }
     }
-
-
-    process.on('unhandledRejection', error => {
-        console.error('Unhandled promise rejection:', error);
-    });
-
-
 });
 
 client.login(process.env.DISCORDJS_BOT_TOKEN);
