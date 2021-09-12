@@ -10,7 +10,9 @@
     "enmap": "^5.8.7",
     "express": "^4.17.1",
     "fs": "^0.0.1-security",
-    "reconlx": "^2.4.3"
+    "mongoose": "^6.0.5",
+    "reconlx": "^2.4.3",
+    "wokcommands": "^1.3.97"
   },
   "engines": {
     "node": "16.9.0"
