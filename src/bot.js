@@ -20,7 +20,7 @@ client.on('ready', () => {
 });
 
 
-client.on('message', async (message) => {
+client.on('messageCreate', async (message) => {
     if (message.content.startsWith(prefix + 'say')) {
         if (message.member.permissions.has(Permissions.FLAGS.ADMINISTRATOR)) {
             if (message.author.bot) return;
@@ -35,7 +35,7 @@ client.on('message', async (message) => {
     }
 });
 
-client.on('message', async (message) => {
+client.on('messageCreate', async (message) => {
     if (message.content.startsWith(prefix + 'embed')) {
         if (message.author.bot) return;
         message.delete();
@@ -51,7 +51,7 @@ client.on('message', async (message) => {
     }
 });
 
-client.on('message', async (message) => {
+client.on('messageCreate', async (message) => {
     if (message.content.startsWith(prefix + "balsot")) {
         if (message.author.bot) return;
         message.delete();
@@ -68,7 +68,7 @@ client.on('message', async (message) => {
     }
 });
 
-client.on('message', async (message) => {
+client.on('messageCreate', async (message) => {
     if (message.content.startsWith(prefix + "info")) {
         if (message.author.bot) return;
         message.delete();
@@ -87,7 +87,7 @@ client.on('message', async (message) => {
     }
 });
 
-client.on('message', async (message) => {
+client.on('messageCreate', async (message) => {
     if (message.content.startsWith(prefix + "help")) {
         if (message.author.bot) return;
         //message.delete();
@@ -103,7 +103,7 @@ client.on('message', async (message) => {
     }
 });
 
-client.on('message', async (message) => {
+client.on('messageCreate', async (message) => {
     if (message.content.startsWith(prefix + "adminhelp")) {
         if (message.author.bot) return;
         //message.delete();
@@ -122,7 +122,7 @@ client.on('message', async (message) => {
     }
 });
 
-client.on('message', async (message) => {
+client.on('messageCreate', async (message) => {
     if (message.content.startsWith(prefix + "ieteikt")) {
         if (message.author.bot) return;
         const words = message.content.split(" ").splice(1).join(" ")
@@ -139,7 +139,7 @@ client.on('message', async (message) => {
     }
 });
 
-client.on('message', async (message) => {
+client.on('messageCreate', async (message) => {
     if (message.content.startsWith(prefix + "clear")) {
         if (message.author.bot) return;
         if (message.member.permissions.has(Permissions.FLAGS.MANAGE_MESSAGES)) {
