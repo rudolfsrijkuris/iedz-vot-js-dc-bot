@@ -190,6 +190,7 @@ client.on('messageCreate', async (message) => {
             .addField("**Informācija par šo discord serveri:**", "?info")
             .addField("**Ieteikt/piedāvāt kādu ideju vai jebko citu kopīgam balsojumam:**", "?ieteikt teksts")
             .addField("**Izveidot jaunu voice kanālu:**", "?voice nosaukums")
+            .addField("**Akmens šķēres papīrīts: **", "?rps akmens | papirs | skeres")
             .setFooter("~Iedzīvotājs")
             .setTimestamp()
         ]})
