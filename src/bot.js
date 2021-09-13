@@ -112,32 +112,32 @@ client.on('messageCreate', async (message) => {
     const command = args.shift().toLowerCase();
 
     if (command === 'rps') {
-        const acceptedReplies = ['rock', 'paper', 'scissors'];
+        const acceptedReplies = ['akmens', 'papirs', 'skeres'];
         const random = Math.floor((Math.random() * acceptedReplies.length));
         const result = acceptedReplies[random];
 
         const choice = args[0];
-        if (!choice) return message.channel.send(`How to play: \`${prefix}rps <rock|paper|scissors>\``);
-        if (!acceptedReplies.includes(choice)) return message.channel.send(`Only these responses are accepted: \`${acceptedReplies.join(', ')}\``);
+        if (!choice) return message.channel.send(`Kā spēlēt: \`${prefix}rps <akmens|papirs|skeres>\``);
+        if (!acceptedReplies.includes(choice)) return message.channel.send(`Tikai šīs atbildes ir pieņemamas: \`${acceptedReplies.join(', ')}\``);
         
-        console.log('Bot Result:', result);
-        if (result === choice) return message.reply("It's a tie! We had the same choice.");
+        console.log('Bota Rezultats:', result);
+        if (result === choice) return message.reply("Neizšķirts!");
         
         switch (choice) {
-            case 'rock': {
-                if (result === 'paper') return message.reply('I won!');
-                else return message.reply('You won!');
+            case 'akmens': {
+                if (result === 'paper') return message.reply('Iedzīvotājs uzvarēja!');
+                else return message.reply('Tu uzvarēji!');
             }
-            case 'paper': {
-                if (result === 'scissors') return message.reply('I won!');
-                else return message.reply('You won!');        
+            case 'papirs': {
+                if (result === 'scissors') return message.reply('Iedzīvotājs uzvarēja!');
+                else return message.reply('Tu uzvarēji!');        
             }
-            case 'scissors': {
-                if (result === 'rock') return message.reply('I won!');
-                else return message.reply('You won!');
+            case 'skeres': {
+                if (result === 'rock') return message.reply('Iedzīvotājs uzvarēja!');
+                else return message.reply('Tu uzvarēji!');
             }
             default: {
-                return message.channel.send(`Only these responses are accepted: \`${acceptedReplies.join(', ')}\``);
+                return message.channel.send(`Tikai šīs atbildes ir pieņemamas: \`${acceptedReplies.join(', ')}\``);
             }
         }
     }
