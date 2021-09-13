@@ -125,7 +125,7 @@ client.on('messageCreate', async (message) => {
         }
 
         const choices = ['🗻', '🧻', '✂'];
-        const me = choices[Math.floor(math.random() * choices.length)]
+        const me = choices[Math.floor(Math.random() * choices.length)]
         msg.awaitReactions(filter, { max: 1, time: 60000, error: ["time"] }). then(
             async(collected) => {
                 const reaction = collected.first();
