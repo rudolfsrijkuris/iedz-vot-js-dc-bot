@@ -37,12 +37,14 @@ app.listen(PORT, () => {
 } */
 
 const roleClaim = require('./role-claim');
+const rps = require("./rps.js");
 
 client.on('ready', () => {
     console.log(`${client.user.tag} has logged in.`);
     client.user.setActivity("ciema iedzīvotājus", { type: "WATCHING", name: "Iedzīvotājs" });
 
     roleClaim(client); // reaction roles
+    rps(client, message, args);
 });
 
 ///  JAUNS VOICE KANĀLS  ///
