@@ -125,15 +125,15 @@ client.on('messageCreate', async (message) => {
         
         switch (choice) {
             case 'akmens': {
-                if (result === 'paper') return message.reply('Iedzīvotājs uzvarēja!');
+                if (result === 'papirs') return message.reply('HaHa Es uzvarēju! :joy:');
                 else return message.reply('Tu uzvarēji!');
             }
             case 'papirs': {
-                if (result === 'scissors') return message.reply('Iedzīvotājs uzvarēja!');
+                if (result === 'skeres') return message.reply('HaHa Es uzvarēju! :joy:');
                 else return message.reply('Tu uzvarēji!');        
             }
             case 'skeres': {
-                if (result === 'rock') return message.reply('Iedzīvotājs uzvarēja!');
+                if (result === 'akmens') return message.reply('HaHa Es uzvarēju! :joy:');
                 else return message.reply('Tu uzvarēji!');
             }
             default: {
