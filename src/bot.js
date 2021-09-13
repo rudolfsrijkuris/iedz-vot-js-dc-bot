@@ -36,13 +36,13 @@ app.listen(PORT, () => {
     }, 20 * 60 * 1000);
 } */
 
-//const roleClaim = require('./role-claim');
+const roleClaim = require('./role-claim');
 
 client.on('ready', () => {
     console.log(`${client.user.tag} has logged in.`);
     client.user.setActivity("ciema iedzīvotājus", { type: "WATCHING", name: "Iedzīvotājs" });
 
-    //roleClaim(client);
+    roleClaim(client);
 });
 
 ///  JAUNS VOICE KANĀLS  ///
