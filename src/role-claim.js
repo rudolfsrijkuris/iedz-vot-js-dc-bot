@@ -44,7 +44,7 @@ module.exports = client => {
         const member = guild.members.cache.find((member) => member.id === user.id)
 
         if (add) {
-        member.roles.addR(role)
+        member.roles.add(role)
         } //else {
         //member.roles.remove(role)
         //}
