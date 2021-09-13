@@ -105,54 +105,41 @@ client.on('messageCreate', async (message) => {
 });
 
 client.on('messageCreate', async (message) => {
-    if (message.content.startsWith(prefix + 'rps')) {
-        if (message.author.bot) return;
+    if (message.author.bot) return;
+    if (message.content.indexOf(prefix) !== 0) return;
+
+    const args = message.content.slice(prefix.length).trim().split(/ +/g);
+    const command = args.shift().toLowerCase();
+
+    if (command === 'rps') {
+        const acceptedReplies = ['rock', 'paper', 'scissors'];
+        const random = Math.floor((Math.random() * acceptedReplies.length));
+        const result = acceptedReplies[random];
+
+        const choice = args[0];
+        if (!choice) return message.channel.send(`How to play: \`${prefix}rps <rock|paper|scissors>\``);
+        if (!acceptedReplies.includes(choice)) return message.channel.send(`Only these responses are accepted: \`${acceptedReplies.join(', ')}\``);
         
-        const msg = await message.channel.send({ embeds: [ new MessageEmbed() 
-            .setTitle("Akmens Šķēres Papīrīts")
-            .setDescription("Spied uz reaction, lai spēlētu")
-            .setTimestamp()
-            .setFooter("~Iedzīvotājs")
-            .setColor("#009602")
-        ]}).then(embedMessage => {
-            embedMessage.react("🗻"),
-            embedMessage.react("🧻"),
-            embedMessage.react("✂")
-        })
-
-        const filter = (reaction, user) => {
-            return ['🗻', '🧻', '✂']. includes(reaction.emoji.name) && user.id === message.author.id;
-        }
-
-        const choices = ['🗻', '🧻', '✂'];
-        const me = choices[Math.floor(Math.random() * choices.length)]
-        message.reactions.wait(filter, { max: 1, time: 60000, error: ["time"] }). then(
-            async(collected) => {
-                const reaction = collected.first();
-                let result = message.channel.send({ embeds: [ new MessageEmbed()
-                    .setTitle("Rezultāts")
-                    .addField("**Tu izvēlējies:**", `${reaction.emoji.name}`)
-                    .addField("**Iedzīvotājs izvēlējās:**", `${me}`)
-                    .setColor("#009602")
-                    .setTimestamp()
-                    .setFooter("~Iedzīvotājs")
-                ]})
-                await msg.edit(result);
-
-                if ((me === "🗻" && reaction.emoji.name === "✂") ||
-                (me === "✂" && reaction.emoji.name === "🧻") ||
-                (me === "🧻" && reaction.emoji.name === "🗻")) {
-                    message.reply("Tu zaudēji!");
-                } else if (me === reaction.emoji.name) {
-                    return message.reply("Neizšķirts!");
-                } else {
-                    return message.reply("Tu uzvarēji!");
-                }
+        console.log('Bot Result:', result);
+        if (result === choice) return message.reply("It's a tie! We had the same choice.");
+        
+        switch (choice) {
+            case 'rock': {
+                if (result === 'paper') return message.reply('I won!');
+                else return message.reply('You won!');
             }
-        ).catch(collected => {
-            message.reply("Spēle tika apturēta, tu nepaspēji atbildēt laikā!")
-        })
-
+            case 'paper': {
+                if (result === 'scissors') return message.reply('I won!');
+                else return message.reply('You won!');        
+            }
+            case 'scissors': {
+                if (result === 'rock') return message.reply('I won!');
+                else return message.reply('You won!');
+            }
+            default: {
+                return message.channel.send(`Only these responses are accepted: \`${acceptedReplies.join(', ')}\``);
+            }
+        }
     }
 })
 
