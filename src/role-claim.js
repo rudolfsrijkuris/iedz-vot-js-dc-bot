@@ -44,10 +44,10 @@ module.exports = client => {
         const member = guild.members.cache.find((member) => member.id === user.id)
 
         if (add) {
-        member.roles.addRole(role)
-        } else {
-        member.roles.removeRole(role)
-        }
+        member.roles.addR(role)
+        } //else {
+        //member.roles.remove(role)
+        //}
     }
 
     client.on('messageReactionAdd', (reaction, user) => {
@@ -56,9 +56,9 @@ module.exports = client => {
         }
     })
     
-    client.on('messageReactionRemove', (reaction, user) => {
-        if (reaction.message.channel.id === channelId) {
-          handleReaction(reaction, user, false)
-        }
-    })
+    //client.on('messageReactionRemove', (reaction, user) => {
+    //    if (reaction.message.channel.id === channelId) {
+     //     handleReaction(reaction, user, false)
+    //    }
+    //})
 }
