@@ -95,8 +95,8 @@ client.on('messageCreate', async (message) => {
         const kanalaid = process.env.KANALA_ID;
         
         message.channel.send({ embeds: [new MessageEmbed()
-            .setTitle("mājasdarbi")
-            .setDescription("Šeit sūtam mājas darbus, lai varētu špikot viens no otra :smile:")
+            .setTitle("**Akmens, šķēres papīrīts**")
+            .addField("**Komanda:**", "?rps akmens | skeres | papirits")
             .setFooter("~Iedzīvotājs")
             .setColor("#009602")
             .setTimestamp()
