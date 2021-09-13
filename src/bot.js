@@ -42,7 +42,7 @@ client.on('ready', () => {
     console.log(`${client.user.tag} has logged in.`);
     client.user.setActivity("ciema iedzīvotājus", { type: "WATCHING", name: "Iedzīvotājs" });
 
-    roleClaim(client);
+    roleClaim(client); // reaction roles
 });
 
 ///  JAUNS VOICE KANĀLS  ///
