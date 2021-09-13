@@ -20,7 +20,7 @@ module.exports = {
 
         const choices = ['🗻', '🧻', '✂'];
         const me = choices[Math.floor(math.random() * choices.length)]
-        message.awaitReactions(filter, { max: 1, time: 60000, error: ["time"] }). then(
+        msg.awaitReactions(filter, { max: 1, time: 60000, error: ["time"] }). then(
             async(collected) => {
                 const reaction = collected.first();
                 let result = message.channel.send({ embeds: [ new MessageEmbed()
@@ -31,7 +31,7 @@ module.exports = {
                     .setTimestamp()
                     .setFooter("~Iedzīvotājs")
                 ]})
-                await message.edit(result);
+                await msg.edit(result);
 
                 if ((me === "🗻" && reaction.emoji.name === "✂") ||
                 (me === "✂" && reaction.emoji.name === "🧻") ||
