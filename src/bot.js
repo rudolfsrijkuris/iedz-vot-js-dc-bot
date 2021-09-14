@@ -14,6 +14,8 @@ app.listen(PORT, () => {
     console.log(`Our app is running on port ${ PORT }`);
 });
 
+client.setMaxListeners(30);
+
 
 
 /* function startKeepAlive() {
@@ -43,8 +45,6 @@ const verify = require('./verify');
 client.on('ready', () => {
     console.log(`${client.user.tag} has logged in.`);
     client.user.setActivity("ciema iedzīvotājus", { type: "WATCHING", name: "Iedzīvotājs" });
-
-    client.setMaxListeners(30);
 
     roleClaim(client); // reaction roles
     verify(client); // verify role
