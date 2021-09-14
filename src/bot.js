@@ -199,8 +199,8 @@ client.on('messageCreate', async (message) => {
     if (message.content.startsWith(prefix + "info")) {
         if (message.author.bot) return;
         message.delete();
-        //const guild = process.env.GUILD_ID
-        const { guild } = message
+        const guild = process.env.GUILD_ID
+        //const { guild } = message
         const { name, region, memberCount, owner, afkTimeout } = guild
 
         const botcon = client.user.displayAvatarURL();
