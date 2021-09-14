@@ -44,7 +44,7 @@ client.on('ready', () => {
     console.log(`${client.user.tag} has logged in.`);
     client.user.setActivity("ciema iedzīvotājus", { type: "WATCHING", name: "Iedzīvotājs" });
 
-    client.setMaxListeners(0);
+    client.setMaxListeners(30);
 
     roleClaim(client); // reaction roles
     verify(client); // verify role
