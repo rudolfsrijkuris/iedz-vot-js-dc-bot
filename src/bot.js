@@ -200,8 +200,6 @@ client.on('messageCreate', async (message) => {
         if (message.author.bot) return;
         message.delete();
         const guild = process.env.GUILD_ID
-        //const { guild } = message
-        const { name, region, memberCount, owner, afkTimeout } = guild
 
         const botcon = client.user.displayAvatarURL();
         message.channel.send({ embeds: [ new MessageEmbed()
@@ -210,7 +208,7 @@ client.on('messageCreate', async (message) => {
             .setColor("#009602")
             .setDescription("Šis ir 10. klašu discord ciemats, kurā ir laipni gaidīti visi, tās iedzīvotāji.")
             .addField("**Izveidošanas datums:**", "11/09/2021 2:29 PM")
-            .addField("**Ciema iedzīvotāju skaits:**", memberCount)
+            .addField("**Ciema iedzīvotāju skaits:**", "36")
             .setTimestamp()
             .setFooter("~Iedzīvotājs") ] 
         })
