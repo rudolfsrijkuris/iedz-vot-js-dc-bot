@@ -199,15 +199,18 @@ client.on('messageCreate', async (message) => {
     if (message.content.startsWith(prefix + "info")) {
         if (message.author.bot) return;
         message.delete();
-        const guild = process.env.GUILD_ID
+        //const guild = process.env.GUILD_ID
+        const { guild } = message
+        const { name, region, memberCount, owner, afkTimeout } = guild
+
         const botcon = client.user.displayAvatarURL();
         message.channel.send({ embeds: [ new MessageEmbed()
             .setThumbnail(botcon)
-            .setTitle("**RTV 10.B klases ciems**")
+            .setTitle("**RTV Ciems**")
             .setColor("#009602")
-            .setDescription("Šis ir 10.B klases discord ciemats, kurā ir laipni gaidīti visi, tās iedzīvotāji.")
+            .setDescription("Šis ir 10. klašu discord ciemats, kurā ir laipni gaidīti visi, tās iedzīvotāji.")
             .addField("**Izveidošanas datums:**", "11/09/2021 2:29 PM")
-            .addField("**Ciema iedzīvotāju skaits:**", "24")
+            .addField("**Ciema iedzīvotāju skaits:**", memberCount)
             .setTimestamp()
             .setFooter("~Iedzīvotājs") ] 
         })
