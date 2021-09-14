@@ -37,12 +37,14 @@ app.listen(PORT, () => {
 } */
 
 const roleClaim = require('./role-claim');
+const verify = require('./verify');
 
 client.on('ready', () => {
     console.log(`${client.user.tag} has logged in.`);
     client.user.setActivity("ciema iedzīvotājus", { type: "WATCHING", name: "Iedzīvotājs" });
 
     roleClaim(client); // reaction roles
+    verify(client); // verify role
 });
 
 ///  JAUNS VOICE KANĀLS  ///
