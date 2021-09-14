@@ -7,6 +7,7 @@ const { Client, Intents, Permissions, Discord, MessageEmbed, voiceStateUpdate } 
 const client = new Client({ partials: ["MESSAGE", "USER", "REACTION"], intents: [Intents.FLAGS.GUILDS, Intents.FLAGS.GUILD_MESSAGES, Intents.FLAGS.GUILD_MESSAGE_REACTIONS] });
 
 const prefix = process.env.PREFIX;
+const ytdl = require('ytdl-core');
 
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
@@ -288,6 +289,124 @@ client.on('messageCreate', async (message) => {
         }
     }
 });
+
+
+///  MUSIC BOT  ///
+client.on('messageCreate', async (message) => {
+    if (message.author.bot) return;
+    if (!message.content.startsWith(prefix)) return;
+    if (!message.content.startsWith(prefix)) return;
+
+    const serverQueue = queue.get(message.guild.id);
+
+    if (message.content.startsWith(prefix + "play")) {
+        execute(message, serverQueue);
+        return;
+    } else if (message.content.startsWith(prefix + "skip")) {
+        skip(message, serverQueue);
+        return;
+    } else if (message.content.startsWith(prefix + "stop")) {
+        stop(message, serverQueue);
+        return;
+    } else {
+        message.channel.send("Ievadi pareizu komandu!");
+    }
+})
+
+const queue = new Map();
+
+async function execute(message, serverQueue) {
+    const argz = message.content.split(" ");
+
+    const voiceChannel = message.member.voice.channel;
+    if (!voiceChannel)
+        return message.channel.send(
+        "Tev ir jābūt balss kanālā, lai atskaņotu mūziku!"
+    );
+
+    const songInfo = await ytdl.getInfo(argz[1]);
+    const song = {
+        title: songInfo.videoDetails.title,
+        url: songInfo.videoDetails.video_url,
+    };
+
+    if (!serverQueue) {
+
+    } else {
+        serverQueue.songs.push(song);
+        console.log(serverQueue.songs);
+        return message.channel.send(`${song.title} tika pievienots rindai!`);
+    }
+
+    // Creating the contract for our queue
+    const queueContruct = {
+        textChannel: message.channel,
+        voiceChannel: voiceChannel,
+        connection: null,
+        songs: [],
+        volume: 5,
+        playing: true,
+    };
+    // Setting the queue using our contract
+    queue.set(message.guild.id, queueContruct);
+    // Pushing the song to our songs array
+    queueContruct.songs.push(song);
+    
+    try {
+        // Here we try to join the voicechat and save our connection into our object.
+        var connection = await voiceChannel.join();
+        queueContruct.connection = connection;
+        // Calling the play function to start a song
+        play(message.guild, queueContruct.songs[0]);
+    } catch (err) {
+        // Printing the error message if the bot fails to join the voicechat
+        console.log(err);
+        queue.delete(message.guild.id);
+        return message.channel.send(err);
+    }
+}
+
+function play(guild, song) {
+    const serverQueue = queue.get(guild.id);
+    if (!song) {
+      serverQueue.voiceChannel.leave();
+      queue.delete(guild.id);
+      return;
+    }
+
+    const dispatcher = serverQueue.connection
+    .play(ytdl(song.url))
+    .on("finish", () => {
+        serverQueue.songs.shift();
+        play(guild, serverQueue.songs[0]);
+    })
+    .on("error", error => console.error(error));
+    dispatcher.setVolumeLogarithmic(serverQueue.volume / 5);
+    serverQueue.textChannel.send(`Atskaņo: **${song.title}**`);
+}
+
+function skip(message, serverQueue) {
+    if (!message.member.voice.channel)
+      return message.channel.send(
+        "Tev ir jābūt balss kanālā, lai izlaistu dziesmu!"
+      );
+    if (!serverQueue)
+      return message.channel.send("Nav dziesmas, kuras izlaist!");
+    serverQueue.connection.dispatcher.end();
+}
+
+function stop(message, serverQueue) {
+    if (!message.member.voice.channel)
+      return message.channel.send(
+        "Tev ir jābūt balss kanālā, lai apstādinātu dziesmu!"
+      );
+    
+    if (!serverQueue)
+      return message.channel.send("Nav dziesmas, kuras apstādināt!");
+      
+    serverQueue.songs = [];
+    serverQueue.connection.dispatcher.end();
+}
 
 //startKeepAlive();
 client.login(process.env.DISCORDJS_BOT_TOKEN);
