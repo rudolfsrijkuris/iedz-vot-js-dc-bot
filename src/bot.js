@@ -14,7 +14,7 @@ app.listen(PORT, () => {
     console.log(`Our app is running on port ${ PORT }`);
 });
 
-//app.setMaxListeners(11);
+app.setMaxListeners(30);
 
 /* function startKeepAlive() {
     setInterval(function() {
