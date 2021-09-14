@@ -122,6 +122,21 @@ client.on('messageCreate', async (message) => {
 });
 
 client.on('messageCreate', async (message) => {
+    if (message.content.startsWith(prefix + 'nemīz')) {
+        if (message.author.bot) return;
+        message.delete();
+        const kanalaid = process.env.KANALA_ID;
+        
+        message.channel.send({ embeds: [new MessageEmbed()
+            .setTitle("**Īsti veči mīž tikai no alus un, no arbūza**")
+            .setFooter("~Iedzīvotājs")
+            .setColor("#009602")
+            .setTimestamp()
+        ]})
+    }
+});
+
+client.on('messageCreate', async (message) => {
     if (message.author.bot) return;
     if (message.content.indexOf(prefix) !== 0) return;
 
