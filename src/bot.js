@@ -294,7 +294,7 @@ client.on('messageCreate', async (message) => {
 
 
 ///  MUSIC BOT  ///
-client.on('messageCreate', async (message) => {
+/* client.on('messageCreate', async (message) => {
     if (message.author.bot) return;
     if (!message.content.startsWith(prefix)) return;
     if (!message.content.startsWith(prefix)) return;
@@ -408,7 +408,7 @@ function stop(message, serverQueue) {
       
     serverQueue.songs = [];
     serverQueue.connection.dispatcher.end();
-}
+} */
 
 //startKeepAlive();
 client.login(process.env.DISCORDJS_BOT_TOKEN);
