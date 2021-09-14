@@ -124,7 +124,7 @@ client.on('messageCreate', async (message) => {
 client.on('messageCreate', async (message) => {
     if (message.content.startsWith(prefix + 'nemīz')) {
         if (message.author.bot) return;
-        message.delete();
+        //message.delete();
         const kanalaid = process.env.KANALA_ID;
         
         message.channel.send({ embeds: [new MessageEmbed()
@@ -223,6 +223,8 @@ client.on('messageCreate', async (message) => {
             .addField("**Ieteikt/piedāvāt kādu ideju vai jebko citu kopīgam balsojumam:**", "?ieteikt teksts")
             .addField("**Izveidot jaunu voice kanālu:**", "?voice nosaukums")
             .addField("**Akmens šķēres papīrīts: **", "?rps akmens | papirs | skeres")
+            .addField("**Ja nepamēģināsi, neuzināsi:**", "?tpg")
+            .addField("**Motivējoša ziņa:**", "?nemīz")
             .setFooter("~Iedzīvotājs")
             .setTimestamp()
         ]})
