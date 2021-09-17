@@ -41,7 +41,7 @@ module.exports = client => {
 
         if (guild.roles.cache.find((role) => role.name === roleName)) {
             return
-        }
+        } // pārbaude vai ir jau role iedots
 
         const role = guild.roles.cache.find((role) => role.name === roleName)
         const member = guild.members.cache.find((member) => member.id === user.id)
