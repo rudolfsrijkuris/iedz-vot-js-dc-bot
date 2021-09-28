@@ -1,0 +1,40 @@
+{
+    "ownerIDS": ["383714051735158786"],
+    "default_cooldown_in_sec" : 1.5,
+    "antiCrash": true,
+    "ping_message": true,
+    "delete_commands": true,
+    "somethingwentwrong_cmd": true,
+
+    "messages": {
+        "ping_message": "Lai redzētu visas komandas raksti: `%{prefix}%help`",
+        "cooldown": "❌ Lūdzu uzgaidi %{timeleft}% sekundi(-es), lai atkārtoti izmantotu `%{commandname}%` komandu.",
+        "notallowed_to_exec_cmd": {
+            "title": "❌ Tev nav permi, lai palaistu šo komandu!",
+            "description": {
+                "memberpermissions": "Tev ir vajadzīgi šie permi:\n> %{commandmemberpermissions}%",
+                "alloweduserids": "Tev ir jābūt šādam lietotājam:\n> %{commandalloweduserids}%",
+                "requiredroles": "Tev jābūt kādam no sekojošiem role:\n> %{commandrequiredroles}%",
+                "default": "Pārliecinies, ka tev ir vajadzīgie permi!"
+            }
+        },
+        "somethingwentwrong_cmd": {
+            "title": "❌ Kaut kas nogāja greizi palaižot: `%{commandname}%` komandu",
+            "description": "```%{errormessage}%```"
+        },
+        "unknown_cmd": "❌ Nezināma komanda, mēģini: **`%{prefix}%help`**",
+        "error_occur": "❌ Notika kļūda",
+        "error_occur_desc": "````%{errorstack}%````"
+    },
+    "timeout": {
+        "notallowed_to_exec_cmd": {
+            "memberpermissions": 4500,
+            "alloweduserids": 3500,
+            "requiredroles": 3500
+        },
+        "minargs": 5000,
+        "maxargs": 5000,
+        "minplusargs": 5000,
+        "maxplusargs": 5000
+    }
+}
