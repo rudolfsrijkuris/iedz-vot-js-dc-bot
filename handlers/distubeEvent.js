@@ -473,10 +473,10 @@ module.exports = (client) => {
           .setFooter("💯" + playlist.user.tag, playlist.user.displayAvatarURL({
             dynamic: true
           }))
-          .setTitle(`${client.allEmojis.check_mark} **Playlist added to the Queue!**`)
-          .setDescription(`👍 Playlist: [\`${playlist.name}\`](${playlist.url ? playlist.url : ""})  -  \`${playlist.songs.length} Song${playlist.songs.length > 0 ? "s" : ""}\``)
-          .addField(`⌛ **Estimated Time:**`, `\`${queue.songs.length - - playlist.songs.length} song${queue.songs.length > 0 ? "s" : ""}\` - \`${(Math.floor((queue.duration - playlist.duration) / 60 * 100) / 100).toString().replace(".", ":")}\``)
-          .addField(`🌀 **Queue Duration:**`, `\`${queue.formattedDuration}\``)
+          .setTitle(`${client.allEmojis.check_mark} **Playlists pievienots rindai!**`)
+          .setDescription(`👍 Playlists: [\`${playlist.name}\`](${playlist.url ? playlist.url : ""})  -  \`${playlist.songs.length} Song${playlist.songs.length > 0 ? "s" : ""}\``)
+          .addField(`⌛ **Paredzētais laiks:**`, `\`${queue.songs.length - - playlist.songs.length} song${queue.songs.length > 0 ? "s" : ""}\` - \`${(Math.floor((queue.duration - playlist.duration) / 60 * 100) / 100).toString().replace(".", ":")}\``)
+          .addField(`🌀 **Rindas ilgums:**`, `\`${queue.formattedDuration}\``)
         ]
       }))
       // DisTubeOptions.searchSongs = true
@@ -495,9 +495,9 @@ module.exports = (client) => {
       .on(`finishSong`, (queue, song) => {
         var embed = new MessageEmbed().setColor(ee.color)
         .setAuthor(`${song.name}`, "https://cdn.discordapp.com/attachments/883978730261860383/883978741892649000/847032838998196234.png", song.url)
-        .setDescription(`See the [Queue on the **DASHBOARD** Live!](${require("../dashboard/settings.json").website.domain}/${queue.id})`)
+        .setDescription(`Eu ko notiek?`)
         .setThumbnail(`https://img.youtube.com/vi/${song.id}/mqdefault.jpg`)
-        .setFooter(`💯 ${song.user.tag}\n⛔️ SONG ENDED!`, song.user.displayAvatarURL({
+        .setFooter(`💯 ${song.user.tag}\n⛔️ Yooo dziesma beidzās!`, song.user.displayAvatarURL({
           dynamic: true
         }));
         queue.textChannel.messages.fetch(PlayerMap.get(`currentmsg`)).then(currentSongPlayMsg=>{
@@ -512,8 +512,8 @@ module.exports = (client) => {
         queue.textChannel.send({
           embeds: [
             new MessageEmbed().setColor(ee.color).setFooter(ee.footertext, ee.footericon)
-            .setTitle("⛔️ LEFT THE CHANNEL")
-            .setDescription(":headphones: **There are no more songs left**")
+            .setTitle("⛔️ AIZGĀJA ATPŪSTIES")
+            .setDescription(":headphones: **Nav palikušas vairs nevienas dziesmas**")
             .setTimestamp()
           ]
         })
@@ -545,15 +545,15 @@ module.exports = (client) => {
     else djs.slice(0, 15).join(", ");
     if(!newTrack) return new MessageEmbed().setColor(ee.wrongcolor).setTitle("NO SONG FOUND?!?!")
     var embed = new MessageEmbed().setColor(ee.color)
-      .setDescription(`See the [Queue on the **DASHBOARD** Live!](${require("../dashboard/settings.json").website.domain}/queue/${newQueue.id})`)
-      .addField(`💡 Requested by:`, `>>> ${newTrack.user}`, true)
-      .addField(`⏱ Duration:`, `>>> \`${newQueue.formattedCurrentTime} / ${newTrack.formattedDuration}\``, true)
-      .addField(`🌀 Queue:`, `>>> \`${newQueue.songs.length} song(s)\`\n\`${newQueue.formattedDuration}\``, true)
-      .addField(`🔊 Volume:`, `>>> \`${newQueue.volume} %\``, true)
+      .setDescription(`Huh, kas notiek?`)
+      .addField(`💡 Pieprasīja:`, `>>> ${newTrack.user}`, true)
+      .addField(`⏱ Ilgums:`, `>>> \`${newQueue.formattedCurrentTime} / ${newTrack.formattedDuration}\``, true)
+      .addField(`🌀 Rinda:`, `>>> \`${newQueue.songs.length} song(s)\`\n\`${newQueue.formattedDuration}\``, true)
+      .addField(`🔊 Skaļums:`, `>>> \`${newQueue.volume} %\``, true)
       .addField(`♾ Loop:`, `>>> ${newQueue.repeatMode ? newQueue.repeatMode === 2 ? `${client.allEmojis.check_mark}\` Queue\`` : `${client.allEmojis.check_mark} \`Song\`` : `${client.allEmojis.x}`}`, true)
-      .addField(`↪️ Autoplay:`, `>>> ${newQueue.autoplay ? `${client.allEmojis.check_mark}` : `${client.allEmojis.x}`}`, true)
-      .addField(`❔ Download Song:`, `>>> [\`Click here\`](${newTrack.streamURL})`, true)
-      .addField(`❔ Filter${newQueue.filters.length > 0 ? "s": ""}:`, `>>> ${newQueue.filters && newQueue.filters.length > 0 ? `${newQueue.filters.map(f=>`\`${f}\``).join(`, `)}` : `${client.allEmojis.x}`}`, newQueue.filters.length > 1 ? false : true)
+      .addField(`↪️ Auto atskaņošana:`, `>>> ${newQueue.autoplay ? `${client.allEmojis.check_mark}` : `${client.allEmojis.x}`}`, true)
+      .addField(`❔ Ielādēt dziesmu:`, `>>> [\`Click here\`](${newTrack.streamURL})`, true)
+      .addField(`❔ Filtrs${newQueue.filters.length > 0 ? "s": ""}:`, `>>> ${newQueue.filters && newQueue.filters.length > 0 ? `${newQueue.filters.map(f=>`\`${f}\``).join(`, `)}` : `${client.allEmojis.x}`}`, newQueue.filters.length > 1 ? false : true)
 			.addField(`🎧 DJ-Role${client.settings.get(newQueue.id, "djroles").length > 1 ? "s": ""}:`, `>>> ${djs}`, client.settings.get(newQueue.id, "djroles").length > 1 ? false : true)
       .setAuthor(`${newTrack.name}`, `https://images-ext-1.discordapp.net/external/DkPCBVBHBDJC8xHHCF2G7-rJXnTwj_qs78udThL8Cy0/%3Fv%3D1/https/cdn.discordapp.com/emojis/859459305152708630.gif`, newTrack.url)
       .setThumbnail(`https://img.youtube.com/vi/${newTrack.id}/mqdefault.jpg`)
