@@ -24,6 +24,7 @@ module.exports = client => {
   } catch (e){
     console.log(String(e.stack).grey.italic.dim.bgRed)
   }
+  client.user.setActivity("ciema iedzīvotājus", { type: "WATCHING", name: "Iedzīvotājs" });
 }
 /**
   * @INFO

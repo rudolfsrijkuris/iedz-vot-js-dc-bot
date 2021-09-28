@@ -38,13 +38,13 @@ const client = new Discord.Client({
         //Discord.Intents.FLAGS.DIRECT_MESSAGE_REACTIONS,
         //Discord.Intents.FLAGS.DIRECT_MESSAGE_TYPING
     ],
-    presence: {
-      activity: {
-        name: `ciema iedzīvotājus`, 
-        type: "WATCHING", 
-      },
-      status: "online"
-    }
+    //presence: {
+    //  activity: {
+    //    name: `ciema iedzīvotājus`, 
+    //    type: "WATCHING", 
+    //  },
+    //  status: "online"
+    //}
 });
 
 const express = require("express");
