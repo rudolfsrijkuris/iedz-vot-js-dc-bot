@@ -47,6 +47,13 @@ const client = new Discord.Client({
     //}
 });
 
+// LEVELING SYSTEM //
+
+const canvacord = require("canvacord")         //load the canvacord library
+client.points = new Enmap({ name: "points" }); //For ranking system
+const leveling = require("./ranking");         //load the leveling file
+leveling(client);    
+
 const express = require("express");
 const app = express();
 const PORT = process.env.PORT || 3000;
