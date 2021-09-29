@@ -140,9 +140,9 @@ module.exports = function (client) {
                     levelinghelp();
                     break;
                     /////////////////////////////////
-                default:
-                    message.reply(`UNKNOWN COMMAND! Try: \`${prefix}levelinghelp\``)
-                    break;
+                //default:
+                //    message.reply(`UNKNOWN COMMAND! Try: \`${prefix}levelinghelp\``)
+                //    break;
             }
             return;
         }
