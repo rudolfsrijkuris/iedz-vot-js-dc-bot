@@ -1,7 +1,7 @@
 const config = require("./botconfig/config.json");
 const canvacord = require("canvacord");
 const Discord = require("discord.js");
-const prefix = config.PREFIX;
+const prefix = config.prefix;
 const embedcolor = config.embedcolor;
 const maximum_leaderboard = config.maximum_leaderboard; //maximum 50 users for the leaderboard!
 
