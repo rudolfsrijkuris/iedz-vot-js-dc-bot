@@ -64,7 +64,7 @@ module.exports = function (client) {
     }
     //else continue or commands...
     //
-    if (message.content.toLowerCase().startsWith(`${config.PREFIX}rank`)) {
+    if (message.content.toLowerCase().startsWith(`${config.prefix}rank`)) {
       //get the rankuser
       let rankuser = message.mentions.users.first() || message.author;
       client.points.ensure(`${message.guild.id}-${rankuser.id}`, {
@@ -139,7 +139,7 @@ module.exports = function (client) {
         });
     }
     //leaderboard command
-    if (message.content.toLowerCase() === `${config.PREFIX}leaderboard`) {
+    if (message.content.toLowerCase() === `${config.prefix}leaderboard`) {
       //some databasing and math
       const filtered = client.points.filter(p => p.guild === message.guild.id).array();
       const sorted = filtered.sort((a, b) => b.points - a.points);
