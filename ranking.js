@@ -304,7 +304,7 @@ module.exports = function (client) {
                             .setTitle(`Ranking of:  ${rankuser.username}`)
                             .setColor(embedcolor)
                             .setImage("attachment://RankCard.png")
-                            .attachFiles(attachment)
+                            .setThumbnail(attachment)
                         //send that embed
                         message.channel.send(embed);
                         return;
