@@ -371,7 +371,7 @@ client.on('messageCreate', async (message) => {
 client.on('messageCreate', async (message) => {
   if (message.content.startsWith(config.prefix + "clearchat")) {
       if (message.author.bot) return;
-      if (message.member.permissions.has(Permissions.FLAGS.MANAGE_MESSAGES)) {
+      //if (message.member.permissions.has(Permissions.FLAGS.MANAGE_MESSAGES)) {
           const args = message.content.split(' ').slice(1);
           const amount = args.join();
 
@@ -385,7 +385,7 @@ client.on('messageCreate', async (message) => {
               message.channel.bulkDelete(messages)
               console.log(amount + " ziņas izdzēstas.")
           });
-      }
+      //}
   }
 });
 
