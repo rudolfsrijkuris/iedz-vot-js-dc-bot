@@ -780,8 +780,9 @@ function onCoolDown(message, command) {
    */
   function change_status(client) {
     try {
-      client.user.setActivity(`${config.prefix}help | ${client.guilds.cache.size} Guilds | ${Math.ceil(client.users.cache.size/1000)}k Members`, {
-        type: "PLAYING",
+     // client.user.setActivity(`${config.prefix}help | ${client.guilds.cache.size} Guilds | ${Math.ceil(client.users.cache.size/1000)}k Members`, {
+      client.user.setActivity(`ciema iedzīvotājus | ${config.prefix}help`, {
+        type: "WATCHING"
       });
     } catch (e) {
       console.log(String(e.stack).bgRed)
