@@ -1,4 +1,5 @@
-# Musicium
+# Iedzīvotājs Discord Bot
+## Speciāli izstrādāts priekš RTV Discord servera
 
 
 ***
@@ -12,28 +13,26 @@
 
 ***
 
-## Installation Guide (Hosting)
-
-> 🖖 [**Repl.it Fork**](https://replit.com/@OxyTomato/Musicium)
+## Instalēšana
 
 <br/>
-- have **node.js v16.6 or higher**
+- vajadzīgs **node.js v16.6 vai augstāks**
 
-- have **ffmpeg and at least 300mb Ram**
+- vajadzīgs **ffmpeg un vismaz 300mb Ram**
 
-- in `./botconfig/config.json` Adjust the BOT TOKEN and PREFIX
+- iekš `./botconfig/config.json` Nomaini BOT TOKEN un PREFIX
 
-- in `./botconfig/settings.json` Adjust the DEFAULT MESSAGES AND OTHER SETTINGS
+- iekš `./botconfig/settings.json` Pielāgo DEFAULT MESSAGES UN CITUS SETTINGUS
 
-- in `./botconfig/embed.json` Adjust the EMBED SETTINGS
+- iekš `./botconfig/embed.json` Pielāgo EMBED SETTINGS
 
-- in `./dashboard/settings.json` Adjust the parameters!
+- iekš `./dashboard/settings.json` Pielāgo parametrus!
 
-    - `dpkg-reconfigure locales` --> To change the server language to XXXX (on debian)
+    - `dpkg-reconfigure locales` --> Lai nomainītu servera valodu uz XXXX (izmantojot debian)
 
-- `npm install` to Install the depedences
+- `npm install` lai ielādētu visus vajadzīgos library
 
-- `node .` to start the Bot
+- `node .` lai palaistu Botu
 
 <br/>
 <br/>
@@ -44,32 +43,23 @@
 
 ## Slash Commands Information
 
-> To add a Subcommand create a Folder in `./slashCommands`
+> Lai izveidotu Subkommandu izveido mapi iekš `./slashCommands`
 
-> Make sure to add it's Settings in `./botconfig/config.json`
+> Pārliecinies ka pievieno tā settingus iekš `./botconfig/config.json`
 
-> You can't have more folder then 1 Layer
+> Nevar būt vairāk mapes kā 1 layer
 
-> If u want to create "normal" Slash commands create the files just in `./slashCommands`
+> Ja vēlies izveidot normālu slash kommandy veido failus iekš `./slashCommands`
 
 <br/>
   
 ***
 
-## [Discord Server 😎](https://discord.gg/milrato) | [Website](https://milrato.dev)
-<a href="https://discord.gg/milrato"><img src="https://invidget.switchblade.xyz/milrato" /></a>
+## [Discord Server 😎](https://discord.gg/wt6qGu7Pyx) | [Website](https://rijkuris.com)
+<a href="https://discord.gg/wt6qGu7Pyx"><img src="https://media.discordapp.net/attachments/886271014449844267/892400450693914745/tpose.jpg" /></a>
 
 ***
-
-## SUPPORT ME AND MILRATO DEVELOPMENT
-
-> You can always Support me by inviting one of my **own Discord Bots**
-
-[![2021's best Music Bot | Lava Music](https://cdn.discordapp.com/attachments/748533465972080670/817088638780440579/test3.png)](https://lava.milrato.dev)
-[![Musicium Music Bot](https://cdn.discordapp.com/attachments/742446682381221938/770055673965707264/test1.png)](https://musicium.musicium.dev)
-[![Milrato Multi Bot](https://cdn.discordapp.com/attachments/742446682381221938/770056826724679680/test1.png)](https://milrato.milrato.dev)
-
 # Credits
 
-> If consider using this Bot, make sure to credit me!
+> Botu veidoja un programmēja Rūdolfs Rijkuris AKA DiamondLion#7777
 
