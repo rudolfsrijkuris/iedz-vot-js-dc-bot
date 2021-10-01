@@ -4,15 +4,6 @@
 
 ***
 
-
-### [**DISCORD SUPPORT SERVER INVITE**](https://support.milrato.eu)
-
-#### > 🦾 [Replit Hosting Tutorial](https://www.youtube.com/watch?v=Mv4QbxSv59M)
-
-#### > 💪 [General Hosting Tutorial (VPS)](https://www.youtube.com/watch?v=yPBo2Gbp9VY) + Bug Fixes
-
-***
-
 ## Instalēšana
 
 <br/>
