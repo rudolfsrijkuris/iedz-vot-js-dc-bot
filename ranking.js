@@ -299,7 +299,7 @@ module.exports = function (client) {
                 rank.build()
                     .then(data => {
                         //add rankcard to attachment
-                        const attachment = {attachments: [new MessageAttachment(data, "RankCard.png")]};
+                        const attachment = {attachments: [new Discord.MessageAttachment(data, "RankCard.png")]};
                         //define embed
                         const embed = {embeds: [new MessageEmbed()
                             .setTitle(`Ranking of:  ${rankuser.username}`)
