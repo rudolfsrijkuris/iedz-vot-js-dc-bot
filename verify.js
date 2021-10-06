@@ -1,7 +1,7 @@
 const firstMessage = require('./first-message')
 
 module.exports = client => {
-    const channelId = '887406287703384084'
+    const channelId = '895394479912148993'
 
     const getEmoji = (emojiName) =>
         client.emojis.cache.find((emoji) => emoji.name === emojiName)
@@ -26,7 +26,7 @@ module.exports = client => {
     firstMessage(client, channelId, emojiText, reactions)
 
     const handleReaction = (reaction, user, add) => {
-        if (user.id === '885903800097972254') {
+        if (user.id === '895245612923097088') {
         return
         }
 
