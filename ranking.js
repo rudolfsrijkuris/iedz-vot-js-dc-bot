@@ -225,12 +225,13 @@ module.exports = function (client) {
                 const newneededPoints = client.points.get(key, `neededpoints`); //get NEW needed Points
 
                 //THE INFORMATION EMBED
-                const embed = new Discord.MessageEmbed()
+                const embed = { embeds: [new MessageEmbed() 
                     .setAuthor(`Ranking of:  ${message.author.tag}`, message.member.user.displayAvatarURL({
                         dynamic: true
                     }))
                     .setDescription(`You've leveled up to Level: **\`${newLevel}\`**! (Points: \`${newPoints}\` / \`${newneededPoints}\`) `)
-                    .setColor(embedcolor);
+                    .setColor(embedcolor)
+                ]}
                 //send ping and embed message
                 message.reply(embed);
         }
@@ -298,13 +299,14 @@ module.exports = function (client) {
                 rank.build()
                     .then(data => {
                         //add rankcard to attachment
-                        const attachment = new Discord.MessageAttachment(data, "RankCard.png");
+                        const attachment = {attachments: [new Discord.MessageAttachment(data, "RankCard.png")]};
                         //define embed
-                        const embed = new Discord.MessageEmbed()
+                        const embed = {embeds: [new MessageEmbed()
                             .setTitle(`Ranking of:  ${rankuser.username}`)
                             .setColor(embedcolor)
                             .setImage("attachment://RankCard.png")
                             .setThumbnail(attachment)
+                        ]}
                         //send that embed
                         message.channel.send(embed);
                         return;
@@ -331,11 +333,12 @@ module.exports = function (client) {
             if(maxnum < 10) maxnum = 10;
             for (let i = 10; i <= maxnum; i += 10) {
                 const top = sorted.splice(0, 10);
-                const embed = new Discord.MessageEmbed()
+                const embed = {embeds: [new MessageEmbed()
                     .setTitle(`\`${message.guild.name}\` | Leaderboard`)
                     .setTimestamp()
                     .setDescription(`Top ${i<orilent?i:orilent}/${orilent} Ranking:`)
-                    .setColor(embedcolor);
+                    .setColor(embedcolor)
+                ]}
                 for (const data of top) {
                     j++;
                     try {
@@ -410,9 +413,10 @@ module.exports = function (client) {
                 databasing(rankuser);
                 if (!args[1]) return message.reply("PLEASE ADD POINTS TO ADD! Usage: `setxpcounter @USER 2`");
                 client.points.set(key, Number(args[1]), `xpcounter`); //set points to 0
-                const embed = new Discord.MessageEmbed()
+                const embed = {embeds: [new MessageEmbed()
                 .setColor(embedcolor)
                 .setDescription(`Successfully set XP COUNTER to \`${args[1]}x\` for: \`${rankuser.tag}\``)
+                ]}
                 message.reply(embed);
             } catch (error) {
                 console.log(error.stack)
@@ -424,9 +428,10 @@ module.exports = function (client) {
             try {
                 if (!args[0]) return message.reply("PLEASE ADD POINTS TO ADD! Usage: `setglobalxpcounter 2`");
                 client.points.set(message.guild.id, Number(args[0]), `setglobalxpcounter`); //set points to 0
-                const embed = new Discord.MessageEmbed()
+                const embed = {embeds: [new MessageEmbed()
                 .setColor(embedcolor)
                 .setDescription(`Successfully set GLOBAL XP COUNTER to \`${args[0]}x\` for: \`${message.guild.name}\``)
+                ]}
                 message.reply(embed);
             } catch {
             }
@@ -469,12 +474,13 @@ module.exports = function (client) {
                         const newPoints = client.points.get(key, `points`); //get current NEW points
 
                         //THE INFORMATION EMBED
-                        const embed = new Discord.MessageEmbed()
+                        const embed = {embeds: [new Discord.MessageEmbed()
                             .setAuthor(`Ranking of:  ${rankuser.tag}`, rankuser.displayAvatarURL({
                                 dynamic: true
                             }))
                             .setDescription(`You've leveled up to Level: **\`${newLevel}\`**! (Points: \`${newPoints + toaddpoints - leftpoints}\` / \`${newneededPoints}\`) `)
-                            .setColor(embedcolor);
+                            .setColor(embedcolor)
+                        ]}
                         //send ping and embed message only IF the adding will be completed!
                         if (toaddpoints - leftpoints < newneededPoints)
                             message.channel.send(rankuser, embed);
@@ -486,9 +492,10 @@ module.exports = function (client) {
                 }
 
 
-                const embed = new Discord.MessageEmbed()
+                const embed = {embeds: [new Discord.MessageEmbed()
                     .setColor(embedcolor)
                     .setDescription(`Successfully added \`${toaddpoints} Points\` to: \`${rankuser.tag}\``)
+                ]}
                 message.reply(embed);
                 rank(rankuser); //also sending the rankcard
             } catch (error) {
@@ -529,12 +536,13 @@ module.exports = function (client) {
                         const newPoints = client.points.get(key, `points`); //get current NEW points
 
                         //THE INFORMATION EMBED
-                        const embed = new Discord.MessageEmbed()
+                        const embed = {embeds: [new Discord.MessageEmbed()
                             .setAuthor(`Ranking of:  ${rankuser.tag}`, rankuser.displayAvatarURL({
                                 dynamic: true
                             }))
                             .setDescription(`You've leveled up to Level: **\`${newLevel}\`**! (Points: \`${newPoints}\` / \`${newneededPoints}\`) `)
-                            .setColor(embedcolor);
+                            .setColor(embedcolor)
+                        ]}
                         //send ping and embed message
                         message.channel.send(rankuser, embed);
 
@@ -544,9 +552,10 @@ module.exports = function (client) {
                     }
                 }
 
-                const embed = new Discord.MessageEmbed()
+                const embed = {embeds: [new Discord.MessageEmbed()
                     .setColor(embedcolor)
                     .setDescription(`Successfully set \`${toaddpoints} Points\` to: \`${rankuser.tag}\``)
+                ]}
                 message.channel.send(embed);
                 rank(rankuser); //also sending the rankcard
             } catch (error) {
