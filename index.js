@@ -13,7 +13,7 @@ const https = require('https-proxy-agent');
 const client = new Discord.Client({
     //fetchAllMembers: false,
     //restTimeOffset: 0,
-    //restWsBridgetimeout: 100, test
+    //restWsBridgetimeout: 100, test, test
     shards: "auto",
     //shardCount: 5,
     allowedMentions: {
