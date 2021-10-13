@@ -22,7 +22,7 @@ const addReactions = (message, reactions) => {
           message[1].edit(text)
           addReactions(message[1], reactions)
         }
-        console.log("message updated")
+        console.log("message updated") // test
       }
     })
   }
