@@ -15,12 +15,14 @@ const addReactions = (message, reactions) => {
         channel.send(text).then((message) => {
           addReactions(message, reactions)
         })
+        console.log("message sent")
       } else {
         // Edit the existing message
         for (const message of messages) {
           message[1].edit(text)
           addReactions(message[1], reactions)
         }
+        console.log("message updated")
       }
     })
   }
