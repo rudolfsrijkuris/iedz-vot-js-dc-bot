@@ -1,5 +1,6 @@
 require("dotenv").config();
 const Discord = require("discord.js");
+const { Permissions, MessageEmbed } = require("discord.js");
 const config = require(`./botconfig/config.json`);
 const settings = require(`./botconfig/settings.json`);
 const filters = require(`./botconfig/filters.json`);
@@ -181,7 +182,7 @@ client.on('messageCreate', async (message) => {
           message.channel.send(SayMessage);
       } else {
           console.log("Kādam piss garām!")
-      }
+        }
   } else {
       return;
   }
